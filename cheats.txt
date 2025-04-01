@@ -1,0 +1,112 @@
+
+Cheat sheet and notes. May be outdated!
+
+------------------------------------------------------------------------------
+
+<C-w> T					move current window to new tab
+<C-w> <HJKL>				switch between split layouts
+<C-x> <C-u>				clang complete suggestions
+.					repeat last change
+@:					repeat last ex-command (e.g. :n)
+zi					en/disable folding
+zj/zk					move to prev/next fold
+(insert) ^R <reg>			paste from register <reg> (e.g. reg ")
+
+------------------------------------------------------------------------------
+
+cgn					change next patternmatch of last regex
+
+------------------------------------------------------------------------------
+
+:tabnew					open new tab
+gt gT					switch tab
+:tabclose tabonly
+
+------------------------------------------------------------------------------
+
+[c ]c					go to prev/next diff hunk
+dp					diffput
+do					diffget (*d*iff *o*btain)
+and via unimpaired:
+con					toggle line numbering
+cor					toggle relative numbering
+col					toggle list
+coh					toggle hlsearch
+cox					toggle crosshair cursor
+coy					toggle wrap
+[a ]a					file prev/next
+[b ]b					buffer prev/next
+[q ]q					error prev/next
+[y{motion}				encode as C string
+CTRL-R =				in insert mode. switch to prompt to
+					allow vimscript execution. output will
+					be inserted. e.g. 'system("ls -la")'
+gi					move to last insertion and enter
+					insert mode
+gv					start visual mode and use last
+					selection
+m< m>					set marks '< and '> (visual mode mark)
+`[ `]					go to first/last char of prev change
+
+------------------------------------------------------------------------------
+
+:le :ce :ri				will left align, center align,
+					and right align text.
+
+cc					delete line and change into ins
+C					delete from curser and change into ins
+f{char} F{char}				move fwd/bwd to occ of char
+t{char} T{char}				move fwd/bwd to 1 before occ of char
+[cd][fFtT]{char}			delete/change to spec. occ of char
+
+------------------------------------------------------------------------------
+
+Fugitive GIT logs into quickfix window (:copen) ([q) (]q)
+:Glog					full history of *current* file
+:Glog -%d				last %d history ~~~
+:Glog --				full history of *commits* (diffs)
+:Glog -%d --				last %d history ~~~
+:Glog -- %				load history *touching*file*
+:Gdiff [merge-conflict]		3way-diff merge conflict via:
+      	MergeTarget[2] | WorkingCopy[%] | MergeSource[3]
+      	diffput N
+      	diffget N		with N being \\2 or % or \\3
+
+:Gitv					gitv in browser (diff) mode
+:Gitv!				gitv in file mode
+	D				diff cursor against master
+	visual selection + D		diff between edges of selection
+
+
+------------------------------------------------------------------------------
+In command prompts:
+<C-R> reads as CTRL-R
+
+<C-R>%					insert name of current file
+<C-R>\					insert path of current file (aliased
+					im vimrc)
+
+------------------------------------------------------------------------------
+NetRW file browser:
+ 	:Ex		Explore
+ 	:Sex		hsplit + explore
+ 	:Sex!		vsplit + explore
+in explorer:
+ 	hit `i` to switch throught list types
+
+------------------------------------------------------------------------------
+GUI stuff:
+
+open dialog to change font and fontsize:
+
+	:set guifont=*
+
+------------------------------------------------------------------------------
+READMEs
+http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
+http://vimgifs.com/
+https://thevaluable.dev/vim-advanced/
+
+------------------------------------------------------------------------------
+
+.eof

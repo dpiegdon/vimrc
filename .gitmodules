@@ -1,0 +1,48 @@
+[submodule "pathogens/setups/clang_complete.git"]
+	path = pathogens/setups/clang_complete.git
+	url = https://github.com/Rip-Rip/clang_complete.git
+[submodule "pathogens/setups/undotree.git"]
+	path = pathogens/setups/undotree.git
+	url = https://github.com/mbbill/undotree.git
+[submodule "pathogens/setups/vim-pathogen.git"]
+	path = pathogens/setups/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "pathogens/setups/fugitive.git"]
+	path = pathogens/setups/fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pathogens/setups/unimpaired.git"]
+	path = pathogens/setups/unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "pathogens/setups/gundo.git"]
+	path = pathogens/setups/gundo.git
+	url = https://github.com/sjl/gundo.vim
+[submodule "pathogens/setups/tabular.git"]
+	path = pathogens/setups/tabular.git
+	url = https://github.com/godlygeek/tabular.git
+[submodule "pathogens/setups/solarized.git"]
+	path = pathogens/setups/solarized.git
+	url = https://github.com/dpiegdon/solarized.git
+[submodule "pathogens/setups/gitgutter.vim"]
+	path = pathogens/setups/gitgutter.vim
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "pathogens/setups/repeat.git"]
+	path = pathogens/setups/repeat.git
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "pathogens/setups/badwolf.git"]
+	path = pathogens/setups/badwolf.git
+	url = https://github.com/sjl/badwolf.git
+[submodule "pathogens/setups/molokai.git"]
+	path = pathogens/setups/molokai.git
+	url = https://github.com/tomasr/molokai.git
+[submodule "pathogens/setups/tagbar.git"]
+	path = pathogens/setups/tagbar.git
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "pathogens/setups/rainbow_parentheses.git"]
+	path = pathogens/setups/rainbow_parentheses.git
+	url = https://github.com/junegunn/rainbow_parentheses.vim.git
+[submodule "pathogens/setups/gv.git"]
+	path = pathogens/setups/gv.git
+	url = https://github.com/junegunn/gv.vim.git
+[submodule "pathogens/setups/ale.git"]
+	path = pathogens/setups/ale.git
+	url = https://github.com/dense-analysis/ale.git

@@ -1,0 +1,32 @@
+" vim: syntax=vim
+
+
+" GUI border fix ******************************************************
+"
+" for the GTK version of gvim:
+" to fix varying-width white borders in the gui window, write to
+" ~/.gtkrc-2.0
+"
+"style "vimfix" {
+"	bg[NORMAL] = "#242424" # this matches my gvim theme 'Normal' bg color.
+"}
+"widget "vim-main-window.*GtkForm" style "vimfix"
+"
+
+
+" font setup **********************************************************
+
+"set guifont=Mono\ 10
+"	default, with some anti-aliasing, but its alright.
+
+"set guifont=Mono\ 11
+"	default, with some anti-aliasing, but its alright.
+
+"set guifont=Fixed\ Medium\ Semi-Condensed\ 11
+"	small, but without any anti-aliasing
+"	only on gentoo
+
+"set guifont=Fixed\ Medium\ Semi-Condensed\ 12
+"	very limited anti-aliasing
+"	only on gentoo
+

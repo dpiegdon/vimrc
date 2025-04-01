@@ -1,0 +1,9 @@
+.netrwhist
+.*.swp
+local/*.vimrc
+nonpersistent/.netrwhist
+nonpersistent/.netrwhist~
+nonpersistent/*.add
+nonpersistent/*.spl
+nonpersistent/viminf*
+nonpersistent/undofiles/*
