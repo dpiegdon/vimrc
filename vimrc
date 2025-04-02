@@ -1,8 +1,8 @@
 " vim yay :)
 
-" =====================================================================
+" ===========================================================================
 " Documentation
-" =====================================================================
+" ===========================================================================
 " Documentation links:
 " (jump to files with `gf`)
 "   - README.md
@@ -19,9 +19,11 @@
 "   - pathogens/enabled/unimpaired.git/doc/unimpaired.txt
 "   - pathogens/enabled/vim-colors-solarized/doc/solarized.txt
 
-" =====================================================================
+" press `K` to get help on wor under cursor (runs keywordprg)
+
+" ===========================================================================
 " Global Setup
-" =====================================================================
+" ===========================================================================
 execute pathogen#infect('pathogens/enabled/{}')
 					" load contained plugins
 
@@ -52,6 +54,8 @@ endfunction
 if has('wildmenu')
 	set wildmenu			" use wildmenu for command-completition
 	set wildmode=longest,full	" full featured
+	set wildoptions=fuzzy,pum	" use fuzzy matching, use popup menu everywhere
+	set wildignorecase		" ignore cases when completing files and dirs
 endif
 
 "set hl=8u				" underline meta / special key (:map)
@@ -99,9 +103,9 @@ setlocal spelllang=en,de
 set spellsuggest=double
 set spellfile=~/.vim/nonpersistent/vimspell.utf-8.add
 
-" =====================================================================
+" ===========================================================================
 " Syntax Highlighting and Visuals
-" =====================================================================
+" ===========================================================================
 syntax on				" enable syntax highlighting
 
 "set whichwrap=b,s,h,l,\<,\>,~,[,]	" which movements wrap around?
@@ -200,51 +204,51 @@ let g:bg_color = "dark"
 let g:colorscheme = "solarized"
 call ColorSchemeActivate()
 
-" =====================================================================
+" ===========================================================================
 " Autocompletion, Indexing
-" =====================================================================
+" ===========================================================================
 "set completeopt=
 
 " ctags and cscope stuff
 set tags=./tags;./cscope.out;/
 set cscopetag				" use cscope and ctags for
 					" <C-]>, :ta and ``vim -t``
-set csto=0				" prefer cscope over ctags
+set cscopetagorder=0			" prefer cscope over ctags
 if filereadable("cscope.out")		" add cscope db in PWD
 	cs add cscope.out
 endif
 set cscopeverbose			" show msg when other DB added
 
-" =====================================================================
+" ===========================================================================
 " Filebrowser (netrq) Setup
-" =====================================================================
+" ===========================================================================
 let g:netrw_liststyle = 3
 "let g:netrw_banner = 1
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:netrw_home="~/.vim/nonpersistent"
 
-" =====================================================================
+" ===========================================================================
 " Gitgutter Setup
-" =====================================================================
+" ===========================================================================
 let g:gitgutter_enabled = 0
 let g:gitgutter_diff_args = '-w -b --ignore-blank-lines --ignore-space-at-eol'
 					" ignore any whitespace-changes in gitgutter
 
-" =====================================================================
+" ===========================================================================
 " Gundo Setup
-" =====================================================================
+" ===========================================================================
 let g:gundo_right = '1'			" show undo-tag on right side
 let g:gundo_prefer_python3 = '1'	" python3 must be used on recent distros
 
-" =====================================================================
+" ===========================================================================
 " RainbowParentheses Setup
-" =====================================================================
+" ===========================================================================
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
-" =====================================================================
+" ===========================================================================
 " Debugging & GDB Plugin
-" =====================================================================
+" ===========================================================================
 "packadd termdebug
 let g:termdebug_config = {}
 let g:termdebug_config['disasm_window'] = 1
@@ -252,9 +256,9 @@ let g:termdebug_config['disasm_window_height'] = 10
 let g:termdebug_config['wide'] = 100
 let g:termdebug_config['winbar'] = 0
 
-" =====================================================================
+" ===========================================================================
 " Filespecific Context Setup
-" =====================================================================
+" ===========================================================================
 runtime ftplugin/man.vim
 
 filetype on				" autorecognize filetypes
@@ -287,7 +291,7 @@ if has("autocmd")
 		au filetype cpp setlocal colorcolumn=100
 		au filetype lpc setlocal colorcolumn=100
 		au filetype c   setlocal colorcolumn=80
-		au filetype vim setlocal colorcolumn=72
+		au filetype vim setlocal colorcolumn=78
 
 		au filetype python setlocal colorcolumn=80,110
 		au filetype python call ShortTab()
@@ -321,9 +325,9 @@ if has("autocmd")
 	augroup end
 endif
 
-" =====================================================================
+" ===========================================================================
 " Key Bindings
-" =====================================================================
+" ===========================================================================
 let mapleader=""
 					" use default leader (backslash)
 
@@ -496,16 +500,16 @@ nnoremap <leader>?L :echo "Lp - lint python code"<CR>
 " linter macros
 nnoremap <silent> <leader>Lp    :lexpr system("pyflakes3 " . expand('%') . " ; pylint " . expand('%'))<CR>
 
-" =====================================================================
+" ===========================================================================
 " Host-Specific Local Setup
-" =====================================================================
+" ===========================================================================
 let local_rc_files = split(globpath("~/.vim/local/", "*.vimrc"), '\n')
 for local_rc in local_rc_files
 	execute('source '.local_rc)
 endfor
 
-" =====================================================================
+" ===========================================================================
 " Finalization
-" =====================================================================
+" ===========================================================================
 set noexrc				" don't use $PWD/.vimrc files
 set secure				" restrict vimrc files in $PWD
