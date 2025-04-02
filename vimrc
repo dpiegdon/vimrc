@@ -42,7 +42,7 @@ set backspace=indent,eol,start		" allow backspacing over everything
 					" in insert-mode
 set nojoinspaces			" do not insert two spaces after
 					" each period on joined lines
-function ShortTab()
+function ShortTab()			" follow PEP8 for python code
 	setlocal expandtab
 	setlocal tabstop=4
 	setlocal shiftwidth=4
@@ -76,29 +76,6 @@ set sidescroll=4			" or 4 chars to the side of the terminal
 set splitbelow				" when splitting, move new to bottom
 set splitright				" when Vsplitting, move new to right
 					" printer options
-set guioptions=acg			" a: Visually highlighted text is available
-					"    for pasting into other applications
-					"    as well as into Vim itself.
-					" c: Use console dialogs instead of
-					"    popup dialogs for simple choices
-					" g: grey out inactive menus instead
-					"    of hiding them
-set guifont=Monoid\ 9
-
-" https://vi.stackexchange.com/questions/3093/how-can-i-change-the-font-size-in-gvim
-function! FontSizePlus()
-	let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
-	let l:gf_size_whole = l:gf_size_whole + 1
-	let l:new_font_size = ' '.l:gf_size_whole
-	let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
-endfunction
-
-function! FontSizeMinus()
-	let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
-	let l:gf_size_whole = l:gf_size_whole - 1
-	let l:new_font_size = ' '.l:gf_size_whole
-	let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
-endfunction
 
 set laststatus=1			" status bar: show ...
 					"    0=> never
@@ -123,59 +100,6 @@ set spellsuggest=double
 set spellfile=~/.vim/nonpersistent/vimspell.utf-8.add
 
 " =====================================================================
-" Filespecific Context Setup
-" =====================================================================
-runtime ftplugin/man.vim
-
-filetype on				" autorecognize filetypes
-filetype plugin on			" autoload filetype-specific plugin
-filetype indent on			" auto-indent according to filetype
-
-if has("autocmd")
-	augroup filespecifics
-		au filetype cpp    setlocal colorcolumn=100
-		au filetype lpc    setlocal colorcolumn=100
-		au filetype c      setlocal colorcolumn=80
-		au filetype vim    setlocal colorcolumn=72
-
-		" follow PEP8 for python code
-		au filetype python setlocal colorcolumn=80,110
-		au filetype python call ShortTab()
-
-		au filetype c,cpp,python,verilog RainbowParentheses
-
-		au filetype man  setlocal readonly
-		au filetype man  nmap <Up> <C-Y>
-		au filetype man  nmap <Down> <C-E>
-		au filetype man  nmap <Space> <PageDown>
-		au filetype man  nmap <Home> gg
-		au filetype man  nmap <End> G
-		au filetype man  nnoremap q :quit<CR>
-		au filetype man  setlocal nomodeline
-
-		au filetype diff setlocal nomodeline
-
-		au filetype mail setlocal tw=72
-		au filetype mail setlocal colorcolumn=72
-		au filetype mail setlocal formatoptions+=a
-		au filetype mail setlocal nomodeline
-		au filetype mail setlocal list
-		au filetype mail setlocal listchars=tab:.\ ,eol:$,trail:.
-		au filetype mail nnoremap <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
-					" kill plenking in quotes
-		au filetype mail nnoremap <leader>=      :set tw+=2<cr>gqip
-		au filetype mail vnoremap <leader>= <Esc>:set tw+=2<cr>gvgqgv
-					" reformat mails
-
-		au BufRead,BufNewFile *.{bsd,bsdl} set filetype=bsdl
-		au BufRead,BufNewFile *.{svf} set filetype=svf
-		au BufRead,BufNewFile *.{bb,bbappend,bbclass} set filetype=bitbake
-
-		au BufReadPre *.nfo set fileencodings=cp437
-	augroup end
-endif
-
-" =====================================================================
 " Syntax Highlighting and Visuals
 " =====================================================================
 syntax on				" enable syntax highlighting
@@ -184,37 +108,46 @@ syntax on				" enable syntax highlighting
 "language messages en_US.UTF-8		" English messages only
 
 " => help ft-c-syntax
+let c_gnu=1				" highlight GNU gcc specific items
+let c_comment_strings=1			" highlight strings and cumbers inside comments
 let c_space_errors=1			" syntax-specific tweaks
-let c_gnu=1				" ?
-let c_comment_strings=1			" XXX
 let c_curly_error=1			" highlight missing braces
+let c_functions=1			" highlight function calls and definitions
+let c_function_pointers=1		" highlight function pointer definitions
+
 let c_no_comment_fold=1			" don't fold comments
-"let g:load_doxygen_syntax=1		" Load up the doxygen syntax XXX
+
+"let g:load_doxygen_syntax=1		" enable doxygen syntax/formatting
 "let g:tex_flavor="latex"
 "let g:tex_indent_brace=0
-let g:gitgutter_enabled = 0
-let g:gitgutter_diff_args = '-w -b --ignore-blank-lines --ignore-space-at-eol'
-					" ignore any whitespace-changes in gitgutter
-
-let g:gundo_right = '1'			" show undo-tag on right side
-let g:gundo_prefer_python3 = '1'	" python3 must be used on recent distros
-
-if has("autocmd")
-	augroup remember_position	" remember cursor position in files
-		autocmd BufReadPost *
-			\     if line("'\"") > 0 && line ("'\"") <= line("$") |
-			\         exe "normal g'\"" |
-			\     endif |
-	augroup end
-
-	augroup for_fugitive		" remove old fugitive buffers
-		autocmd BufReadPost fugitive://* set bufhidden=delete
-	augroup end
-endif
+"
 
 if has("gui_running")
 	let g:solarized_menu=0		" colorscheme options
 	let g:solarized_degrade=0	" use same scheme as for 256-color term
+	set guioptions=acg		" a: Visually highlighted text is available
+					"    for pasting into other applications
+					"    as well as into Vim itself.
+					" c: Use console dialogs instead of
+					"    popup dialogs for simple choices
+					" g: grey out inactive menus instead
+					"    of hiding them
+	set guifont=Monoid\ 9
+
+	" https://vi.stackexchange.com/questions/3093/how-can-i-change-the-font-size-in-gvim
+	function! FontSizePlus()
+		let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+		let l:gf_size_whole = l:gf_size_whole + 1
+		let l:new_font_size = ' '.l:gf_size_whole
+		let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+	endfunction
+
+	function! FontSizeMinus()
+		let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+		let l:gf_size_whole = l:gf_size_whole - 1
+		let l:new_font_size = ' '.l:gf_size_whole
+		let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+	endfunction
 else
 	set t_Co=256			" use 256 colors (xterm)
 	let g:solarized_termcolors=256
@@ -240,7 +173,7 @@ function ColorSchemeActivate()
 	exe "colorscheme " . g:colorscheme
 
 	" reset sign column colors. without, signs are barely visible (e.g. GitGutter)
-	autocmd ColorScheme * highlight clear SignColumn
+	au ColorScheme * highlight clear SignColumn
 endfunction
 
 function ColorSchemeNextBrightness()
@@ -283,11 +216,6 @@ endif
 set cscopeverbose			" show msg when other DB added
 
 " =====================================================================
-" RainbowParentheses Setup
-" =====================================================================
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-
-" =====================================================================
 " Filebrowser (netrq) Setup
 " =====================================================================
 let g:netrw_liststyle = 3
@@ -295,6 +223,24 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:netrw_home="~/.vim/nonpersistent"
+
+" =====================================================================
+" Gitgutter Setup
+" =====================================================================
+let g:gitgutter_enabled = 0
+let g:gitgutter_diff_args = '-w -b --ignore-blank-lines --ignore-space-at-eol'
+					" ignore any whitespace-changes in gitgutter
+
+" =====================================================================
+" Gundo Setup
+" =====================================================================
+let g:gundo_right = '1'			" show undo-tag on right side
+let g:gundo_prefer_python3 = '1'	" python3 must be used on recent distros
+
+" =====================================================================
+" RainbowParentheses Setup
+" =====================================================================
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " =====================================================================
 " Debugging & GDB Plugin
@@ -305,6 +251,75 @@ let g:termdebug_config['disasm_window'] = 1
 let g:termdebug_config['disasm_window_height'] = 10
 let g:termdebug_config['wide'] = 100
 let g:termdebug_config['winbar'] = 0
+
+" =====================================================================
+" Filespecific Context Setup
+" =====================================================================
+runtime ftplugin/man.vim
+
+filetype on				" autorecognize filetypes
+filetype plugin on			" autoload filetype-specific plugin
+filetype indent on			" auto-indent according to filetype
+
+if has("autocmd")
+	augroup remember_position	" remember cursor position in files
+		au BufReadPost *
+			\     if line("'\"") > 0 && line ("'\"") <= line("$") |
+			\         exe "normal g'\"" |
+			\     endif |
+	augroup end
+
+	augroup fugitive
+		" remove old fugitive buffers
+		au BufReadPost fugitive://* set bufhidden=delete
+	augroup end
+
+	augroup recognize_filetype
+		au BufRead,BufNewFile *.{bsd,bsdl}            set filetype=bsdl
+		au BufRead,BufNewFile *.{svf}                 set filetype=svf
+		au BufRead,BufNewFile *.{bb,bbappend,bbclass} set filetype=bitbake
+		au BufReadPre         *.nfo                   set fileencodings=cp437
+	augroup end
+
+	augroup filetypes
+		au filetype c,cpp,python,verilog RainbowParentheses
+
+		au filetype cpp setlocal colorcolumn=100
+		au filetype lpc setlocal colorcolumn=100
+		au filetype c   setlocal colorcolumn=80
+		au filetype vim setlocal colorcolumn=72
+
+		au filetype python setlocal colorcolumn=80,110
+		au filetype python call ShortTab()
+
+
+		au filetype diff setlocal nomodeline
+
+		" to use vim as manpage reader:
+		"   alias man=vimman
+		"   vimman() { vim -c ":Man $1 $2 $3" -c ":only" }
+		au filetype man  setlocal readonly
+		au filetype man  setlocal nomodeline
+		au filetype man  nmap     <Up>    <C-Y>
+		au filetype man  nmap     <Down>  <C-E>
+		au filetype man  nmap     <Space> <PageDown>
+		au filetype man  nmap     <Home>  gg
+		au filetype man  nmap     <End>   G
+		au filetype man  nnoremap q       :quit<CR>
+
+		au filetype mail setlocal tw=72
+		au filetype mail setlocal colorcolumn=72
+		au filetype mail setlocal formatoptions+=a
+		au filetype mail setlocal nomodeline
+		au filetype mail setlocal list
+		au filetype mail setlocal listchars=tab:.\ ,eol:$,trail:.
+		au filetype mail nnoremap <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
+					" kill plenking in quotes
+		au filetype mail nnoremap <leader>=      :set tw+=2<cr>gqip
+		au filetype mail vnoremap <leader>= <Esc>:set tw+=2<cr>gvgqgv
+					" reformat mails
+	augroup end
+endif
 
 " =====================================================================
 " Key Bindings
@@ -380,10 +395,11 @@ nnoremap <leader>D :Gvdiffsplit!<CR>
 
 nnoremap <silent> <leader><tab> :call ShortTab()<CR>
 
-"nnoremap <leader>- :call FontSizeMinus()<CR>
-"nnoremap <leader>= :call FontSizePlus()<CR>
-"nnoremap <leader>+ :call FontSizePlus()<CR>
+if has("gui_running")
 
+	nnoremap <leader>- :call FontSizeMinus()<CR>
+	nnoremap <leader>+ :call FontSizePlus()<CR>
+endif
 noremap! <C-R>\ <C-R>=fnameescape(expand('%:h')).'/'<cr>
 					" insert directory of current file
 					" (in prompts)
