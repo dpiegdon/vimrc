@@ -247,6 +247,23 @@ let g:gundo_prefer_python3 = '1'	" python3 must be used on recent distros
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " ===========================================================================
+" Clang Complete Setup
+" ===========================================================================
+" NOTE: plugin currently disabled
+
+" jump to declaration:	<C-]>
+"  ~ in preview win:	<C-w>-]
+" jump back:		<C-t> or <C-o>
+
+let g:clang_complete_auto=0		" use autocompletion?
+let g:clang_auto_select=0		" select any from popup menu?
+let g:clang_hl_errors=1			" highlight errors like clang?
+let g:clang_complete_copen=0		" show quickfixes on error?
+let g:clang_periodic_quickfix=0		" autoupdate quickfix window?
+let g:clang_close_preview=1		" remove preview after completion?
+let g:clang_complete_macros=1		" complete preproc/macros?
+
+" ===========================================================================
 " Debugging & GDB Plugin
 " ===========================================================================
 "packadd termdebug
@@ -400,10 +417,10 @@ nnoremap <leader>D :Gvdiffsplit!<CR>
 nnoremap <silent> <leader><tab> :call ShortTab()<CR>
 
 if has("gui_running")
-
 	nnoremap <leader>- :call FontSizeMinus()<CR>
 	nnoremap <leader>+ :call FontSizePlus()<CR>
 endif
+
 noremap! <C-R>\ <C-R>=fnameescape(expand('%:h')).'/'<cr>
 					" insert directory of current file
 					" (in prompts)
@@ -469,19 +486,6 @@ nnoremap <leader>CVe :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>CVf :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>CVi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
-" clang setup
-"inoremap <C-@> <C-X><C-U>
-"let g:clang_complete_auto=0		" use autocompletion?
-"let g:clang_auto_select=0		" select any from popup menu?
-"let g:clang_hl_errors=1		" highlight errors like clang?
-"let g:clang_complete_copen=0		" show quickfixes on error?
-"let g:clang_periodic_quickfix=0	" autoupdate quickfix window?
-"let g:clang_close_preview=1		" remove preview after completion?
-"let g:clang_complete_macros=1		" complete preproc/macros?
-" jump to declaration:	<C-]>
-"  ~ in preview win:	<C-w>-]
-" jump back:		<C-t> or <C-o>
-"
 vnoremap <silent> <leader>Cf    ! indent -kr -i8 -l100<CR>
 
 nnoremap <leader>?q :echo "qc - show quickfix window\nqn / qp - navigate qf entries\nql - show location window\nqN / qP - navigate loc entries"<CR>
