@@ -45,6 +45,8 @@ gi					move to last insertion and enter
 					insert mode
 gv					start visual mode and use last
 					selection
+gd					go to local definition
+gD					go to global definition
 m< m>					set marks '< and '> (visual mode mark)
 `[ `]					go to first/last char of prev change
 
@@ -100,12 +102,6 @@ GUI stuff:
 open dialog to change font and fontsize:
 
 	:set guifont=*
-
-------------------------------------------------------------------------------
-READMEs
-http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
-http://vimgifs.com/
-https://thevaluable.dev/vim-advanced/
 
 ------------------------------------------------------------------------------
 

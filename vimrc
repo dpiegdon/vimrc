@@ -354,6 +354,8 @@ let mapleader=""
 vmap <leader>y "gy<CR>:wviminfo!<CR>
 nmap <leader>p :rviminfo!<CR>"gp
 
+nnoremap <leader><F1> :tabedit ~/.vim/vimrc<CR>
+nnoremap <leader><F2> :tabedit ~/.vim/cheats.txt<CR>
 
 nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:Paste\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace xX:Hex i:IntInc d:IntDec m:make ?C:Cscope Cf:indent ?q:quickfix ?L:linter"<CR>
 
