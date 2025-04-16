@@ -46,3 +46,6 @@
 [submodule "pathogens/setups/ale.git"]
 	path = pathogens/setups/ale.git
 	url = https://github.com/dense-analysis/ale.git
+[submodule "pathogens/setups/w3m.vim"]
+	path = pathogens/setups/w3m.vim
+	url = https://github.com/yuratomo/w3m.vim
