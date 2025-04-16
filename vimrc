@@ -386,7 +386,9 @@ nnoremap <leader>?5 :split ~/.vim/pathogens/setups/gv.git/README.md<CR>
 nnoremap <silent> <leader>6 :call ColorSchemeNextBrightness()<CR>
 nnoremap <silent> <leader>^ :call ColorSchemeNext()<CR>
 
-set pastetoggle=<leader>7
+
+nnoremap <silent> <leader>7 :ALEToggle<CR>
+set pastetoggle=<leader>8
 					" toggle paste mode
 
 nnoremap <leader>% :!tig   -- <C-R>%
