@@ -49,3 +49,6 @@
 [submodule "pathogens/setups/w3m.vim"]
 	path = pathogens/setups/w3m.vim
 	url = https://github.com/yuratomo/w3m.vim
+[submodule "pathogens/setups/colorschemes.git"]
+	path = pathogens/setups/colorschemes.git
+	url = https://github.com/vim/colorschemes.git
