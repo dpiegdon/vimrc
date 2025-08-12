@@ -333,7 +333,8 @@ if has("autocmd")
 		au filetype mail setlocal formatoptions+=a
 		au filetype mail setlocal nomodeline
 		au filetype mail setlocal list
-		au filetype mail setlocal listchars=tab:.\ ,eol:$,trail:.
+		au filetype mail setlocal listchars=tab:.\ ,trail:.
+		au filetype mail setlocal spell
 		au filetype mail nnoremap <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
 					" kill plenking in quotes
 		au filetype mail nnoremap <leader>=      :set tw+=2<cr>gqip
