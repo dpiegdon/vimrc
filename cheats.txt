@@ -11,6 +11,9 @@ Cheat sheet and notes. May be outdated!
 zi					en/disable folding
 zj/zk					move to prev/next fold
 (insert) ^R <reg>			paste from register <reg> (e.g. reg ")
+					use register `+' or `*' to copy
+					to/paste from Xorg buffer.
+					see :help registers
 
 ------------------------------------------------------------------------------
 

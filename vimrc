@@ -178,6 +178,24 @@ function ColorSchemeActivate()
 
 	" reset sign column colors. without, signs are barely visible (e.g. GitGutter)
 	au ColorScheme * highlight clear SignColumn
+
+	" ALE plugin colors
+	" ALEError ALEWarning ALEInfo
+	" ALEStyleError ALEStyleWarning
+	if( g:bg_color == "dark" )
+		highlight ALEVirtualTextError   ctermfg=red         ctermbg=black
+		highlight ALEVirtualTextWarning ctermfg=magenta     ctermbg=black
+		highlight ALEVirtualTextInfo    ctermfg=gray        ctermbg=black
+	else
+		highlight ALEVirtualTextError   ctermfg=darkred     ctermbg=white
+		highlight ALEVirtualTextWarning ctermfg=darkmagenta ctermbg=white
+		highlight ALEVirtualTextInfo    ctermfg=darkgray    ctermbg=white
+	endif
+	highlight link ALEVirtualTextStyleError   ALEVirtualTextError
+	highlight link ALEVirtualTextStyleWarning ALEVirtualTextWarning
+	highlight link ALEError                   ALEVirtualTextError
+	highlight link ALEWarning                 ALEVirtualTextWarning
+	highlight link ALEInfo                    ALEVirtualTextInfo
 endfunction
 
 function ColorSchemeNextBrightness()
