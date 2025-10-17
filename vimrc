@@ -332,7 +332,6 @@ if has("autocmd")
 		au filetype python setlocal colorcolumn=80,110
 		au filetype python call ShortTab()
 
-
 		au filetype diff setlocal nomodeline
 
 		" to use vim as manpage reader:
@@ -340,12 +339,12 @@ if has("autocmd")
 		"   vimman() { vim -c ":Man $1 $2 $3" -c ":only" }
 		au filetype man  setlocal readonly
 		au filetype man  setlocal nomodeline
-		au filetype man  nmap     <Up>    <C-Y>
-		au filetype man  nmap     <Down>  <C-E>
-		au filetype man  nmap     <Space> <PageDown>
-		au filetype man  nmap     <Home>  gg
-		au filetype man  nmap     <End>   G
-		au filetype man  nnoremap q       :quit<CR>
+		au filetype man  nmap     <buffer> <Up>    <C-Y>
+		au filetype man  nmap     <buffer> <Down>  <C-E>
+		au filetype man  nmap     <buffer> <Space> <PageDown>
+		au filetype man  nmap     <buffer> <Home>  gg
+		au filetype man  nmap     <buffer> <End>   G
+		au filetype man  nnoremap <buffer> q       :quit<CR>
 
 		au filetype mail setlocal tw=72
 		au filetype mail setlocal colorcolumn=72
@@ -354,10 +353,10 @@ if has("autocmd")
 		au filetype mail setlocal list
 		au filetype mail setlocal listchars=tab:.\ ,trail:.
 		au filetype mail setlocal spell
-		au filetype mail nnoremap <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
+		au filetype mail nnoremap <buffer> <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
 					" kill plenking in quotes
-		au filetype mail nnoremap <leader>=      :set tw+=2<cr>gqip
-		au filetype mail vnoremap <leader>= <Esc>:set tw+=2<cr>gvgqgv
+		au filetype mail nnoremap <buffer> <leader>=      :set tw+=2<cr>gqip
+		au filetype mail vnoremap <buffer> <leader>= <Esc>:set tw+=2<cr>gvgqgv
 					" reformat mails
 	augroup end
 endif
