@@ -103,6 +103,9 @@ setlocal spelllang=en,de
 set spellsuggest=double
 set spellfile=~/.vim/nonpersistent/vimspell.utf-8.add
 
+set updatetime=500
+					" increase visual update rate to 2Hz
+
 " ===========================================================================
 " Syntax Highlighting and Visuals
 " ===========================================================================
