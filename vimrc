@@ -196,6 +196,7 @@ function ColorSchemeActivate()
 	highlight link ALEError                   ALEVirtualTextError
 	highlight link ALEWarning                 ALEVirtualTextWarning
 	highlight link ALEInfo                    ALEVirtualTextInfo
+	highlight link TagbarHighlight            IncSearch
 endfunction
 
 function ColorSchemeNextBrightness()
