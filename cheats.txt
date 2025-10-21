@@ -3,7 +3,6 @@ Cheat sheet and notes. May be outdated!
 
 ------------------------------------------------------------------------------
 
-<C-w> T					move current window to new tab
 <C-w> <HJKL>				switch between split layouts
 <C-x> <C-u>				clang complete suggestions
 .					repeat last change
@@ -21,6 +20,9 @@ cgn					change next patternmatch of last regex
 
 ------------------------------------------------------------------------------
 
+<C-w> T					move current window to new tab
+<C-w> s					split current window
+<C-w> v					vsplit current window
 :tabnew					open new tab
 gt gT					switch tab
 :tabclose tabonly

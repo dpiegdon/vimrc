@@ -370,6 +370,24 @@ endif
 let mapleader=""
 					" use default leader (backslash)
 
+" use ALT-1 .. ALT-9 to switch to tabs
+nnoremap <A-1> :1tabnext<CR>
+nnoremap <A-2> :2tabnext<CR>
+nnoremap <A-3> :3tabnext<CR>
+nnoremap <A-4> :4tabnext<CR>
+nnoremap <A-5> :5tabnext<CR>
+nnoremap <A-6> :6tabnext<CR>
+nnoremap <A-7> :7tabnext<CR>
+nnoremap <A-8> :8tabnext<CR>
+nnoremap <A-9> :9tabnext<CR>
+nnoremap <A-0> :10tabnext<CR>
+" and ALT-h/ALT-l to go to previous/next tab
+nnoremap <A-h> :tabNext<CR>
+nnoremap <A-l> :tabnext<CR>
+" and ALT-Left/ALT-Right to move current tab to left/right
+nnoremap <A-Left> :tabmove -<CR>
+nnoremap <A-Right> :tabmove +<CR>
+
 " yank across sessions
 " setup register 'g' for global yanking via <leader>y and <leader>p
 " see http://vim.wikia.com/wiki/Copy_and_paste_between_Vim_instances
