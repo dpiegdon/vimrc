@@ -496,7 +496,9 @@ nnoremap <leader>d <C-x>
 " autocompletion, execution and indexing tools
 
 nnoremap <leader>m :make\|copen<CR>
-					" make and open quickfix list with errors
+					" make into quickfix and open it
+nnoremap <leader>M :lmake\|lopen<CR>
+					" make into lwindow and open it
 
 nnoremap <leader>?C :echo "Ci - create cscope index\nCc - run cscope+ctags on cwd\nCd - clear cscope/ctag files in cwd\nC(sSV)(sgdctefi) - ctag/cscope (search,Split,Vsplit) (Symbol,Global,D:callee,Caller,liTeral,Egrep,File,Includer)\nCf - run indent on marked block"<CR>
 
@@ -538,21 +540,12 @@ nnoremap <leader>CVi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 vnoremap <silent> <leader>Cf    ! indent -kr -i8 -l100<CR>
 
-nnoremap <leader>?q :echo "qc - show quickfix window\nqn / qp - navigate qf entries\nql - show location window\nqN / qP - navigate loc entries"<CR>
-					" quickfix window stuff
-nnoremap <leader>qc :cwindow<CR>
-nnoremap <leader>qp :cp<CR>
-nnoremap <leader>qn :cn<CR>
-" also map to ALT Shift-J / Shift-K
-nnoremap <A-J> :cp<CR>
-nnoremap <A-K> :cn<CR>
-					" location window stuff
-nnoremap <leader>ql :lwindow<CR>
-nnoremap <leader>qP :lp<CR>
-nnoremap <leader>qN :lne<CR>
-" also map to ALT Shift-H / Shift-L
-nnoremap <A-H> :lp<CR>
-nnoremap <A-L> :lne<CR>
+					" walk through quickfix window
+nnoremap <A-J> :cwindow<CR>:cp<CR>
+nnoremap <A-K> :cwindow<CR>:cn<CR>
+					" walk through location window
+nnoremap <A-H> :lwindow<CR>:lp<CR>
+nnoremap <A-L> :lwindow<CR>:lne<CR>
 
 " python tools
 nnoremap <leader>?L :echo "Lp - lint python code"<CR>
