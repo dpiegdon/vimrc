@@ -541,12 +541,18 @@ vnoremap <silent> <leader>Cf    ! indent -kr -i8 -l100<CR>
 nnoremap <leader>?q :echo "qc - show quickfix window\nqn / qp - navigate qf entries\nql - show location window\nqN / qP - navigate loc entries"<CR>
 					" quickfix window stuff
 nnoremap <leader>qc :cwindow<CR>
-nnoremap <leader>qn :cn<CR>
 nnoremap <leader>qp :cp<CR>
+nnoremap <leader>qn :cn<CR>
+" also map to ALT Shift-J / Shift-K
+nnoremap <A-J> :cp<CR>
+nnoremap <A-K> :cn<CR>
 					" location window stuff
 nnoremap <leader>ql :lwindow<CR>
-nnoremap <leader>qN :lne<CR>
 nnoremap <leader>qP :lp<CR>
+nnoremap <leader>qN :lne<CR>
+" also map to ALT Shift-H / Shift-L
+nnoremap <A-H> :lp<CR>
+nnoremap <A-L> :lne<CR>
 
 " python tools
 nnoremap <leader>?L :echo "Lp - lint python code"<CR>
