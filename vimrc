@@ -238,6 +238,12 @@ set cscopetag				" use cscope and ctags for
 set cscopetagorder=0			" prefer cscope over ctags
 if filereadable("cscope.out")		" add cscope db in PWD
 	cs add cscope.out
+else					" or any directory above
+	let cscope_file=findfile("cscope.out", ".;")
+	let cscope_pre=matchstr(cscope_file, ".*/")
+	if !empty(cscope_file) && filereadable(cscope_file)
+		exe "cs add" cscope_file cscope_pre
+	endif
 endif
 set cscopeverbose			" show msg when other DB added
 
