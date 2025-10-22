@@ -408,7 +408,7 @@ nmap <leader>p :rviminfo!<CR>"gp
 nnoremap <leader><F1> :tabedit ~/.vim/vimrc<CR>
 nnoremap <leader><F2> :tabedit ~/.vim/cheats.txt<CR>
 
-nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:Paste\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace xX:Hex i:IntInc d:IntDec m:make ?C:Cscope Cf:indent ?q:quickfix ?L:linter"<CR>
+nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:Paste\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace i:IntInc d:IntDec\nm:make ?C:Cscope\nq/Q:quickfix l/L:locationlist ?f:filter"<CR>
 
 nmap <silent> <leader>\ :nohlsearch<CR>
 					" hide hilights
@@ -454,10 +454,6 @@ function ToggleDiffOption(option)
 endfunction
 nnoremap <leader>= :call ToggleDiffOption('iwhiteall')<CR>
 
-nnoremap <A-u> :n<CR>
-nnoremap <A-i> :N<CR>
-					" next/previous file
-
 nnoremap <leader>a [czz
 nnoremap <leader>s ]czz
 					" jump to next diff and center it
@@ -487,14 +483,11 @@ nnoremap <leader>> :Sex!<CR>
 nnoremap <leader>w :%s/[ \t]*$//g<CR>
 					" kill any whitespace at all EOL
 
-nnoremap <leader>x :%!xxd -g 1<CR>
-nnoremap <leader>X :%!xxd -g 1 -r <CR>
-					" globally convert between RAW and HEX
-					" (":set binary" or "vim -b <file>")
-
 nnoremap <leader>i <C-a>
+nnoremap <A-k> <C-a>
 					" increase number under cursor
 nnoremap <leader>d <C-x>
+nnoremap <A-j> <C-x>
 					" decrease number under cursor
 
 
@@ -505,7 +498,7 @@ nnoremap <leader>m :make\|copen<CR>
 nnoremap <leader>M :lmake\|lopen<CR>
 					" make into lwindow and open it
 
-nnoremap <leader>?C :echo "Ci - create cscope index\nCc - run cscope+ctags on cwd\nCd - clear cscope/ctag files in cwd\nC(sSV)(sgdctefi) - ctag/cscope (search,Split,Vsplit) (Symbol,Global,D:callee,Caller,liTeral,Egrep,File,Includer)\nCf - run indent on marked block"<CR>
+nnoremap <leader>?C :echo "Ci - create cscope index\nCc - run cscope+ctags on cwd\nCd - clear cscope/ctag files in cwd\nC(sSV)(sgdctefi) - ctag/cscope (search,Split,Vsplit) (Symbol,Global,D:callee,Caller,liTeral,Egrep,File,Includer)<CR>
 
 nnoremap <leader>Ci :exe "!/usr/bin/find . -type f \\\( -name \\\*.c -o -name \\\*.h \\\) > cscope.files"<CR>
 nnoremap <leader>Cc :exe "!cscope -b -q -k ; ctags -R"<CR>
@@ -543,20 +536,53 @@ nnoremap <leader>CVe :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>CVf :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>CVi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
-vnoremap <silent> <leader>Cf    ! indent -kr -i8 -l100<CR>
-
-					" walk through quickfix window
-nnoremap <A-J> :cwindow<CR>:cp<CR>
-nnoremap <A-K> :cwindow<CR>:cn<CR>
-					" walk through location window
-nnoremap <A-H> :lwindow<CR>:lp<CR>
-nnoremap <A-L> :lwindow<CR>:lne<CR>
-
 " python tools
-nnoremap <leader>?L :echo "Lp - lint python code"<CR>
+nnoremap <leader>?f :echo "fb - reformat python with black\nfi - indent C\nfp - lint python code\nfx fX - toggle between hex/binary"<CR>
 
-" linter macros
-nnoremap <silent> <leader>Lp    :lexpr system("pyflakes3 " . expand('%') . " ; pylint " . expand('%'))<CR>
+" filter macros
+nnoremap <silent> <leader>fb  :%!black -<CR>
+nnoremap <silent> <leader>fi  :%!indent -kr -i8 -l100<CR>
+nnoremap <silent> <leader>fp  :lexpr system("pyflakes3 " . expand('%') . " ; pylint " . expand('%'))<CR>
+nnoremap <silent> <leader>fx  :%!xxd -g 1<CR>
+nnoremap <silent> <leader>fX  :%!xxd -g 1 -r <CR>
+					" globally convert between RAW and HEX
+					" (":set binary" or "vim -b <file>")
+
+
+
+" quickfix window -- use unimpaired [q ]q to navigate
+command! QtoggleActive if empty(filter(getwininfo(), 'v:val.quickfix')) | copen | else | cclose | endif
+function! s:QtogglePassive()
+	if empty(filter(getwininfo(), 'v:val.quickfix'))
+		let l:curwin = winnr()
+		copen
+		execute l:curwin . 'wincmd w'
+	else
+		cclose
+	endif
+endfunction
+command! QtogglePassive call s:QtogglePassive()
+nnoremap <leader>Q :QtoggleActive<CR>
+nnoremap <leader>q :QtogglePassive<CR>
+
+" location list -- use unimpaired [l ]l to navigate
+command! LtoggleActive if empty(getloclist(0)) | echo "No location list" | elseif !empty(filter(getwininfo(), 'v:val.loclist')) | lclose | else | lopen | endif
+function! s:LtogglePassive()
+	if empty(getloclist(0))
+		echo "No location list"
+		return
+	endif
+	if empty(filter(getwininfo(), 'v:val.loclist'))
+		let l:curwin = winnr()
+		lopen
+		execute l:curwin . 'wincmd w'
+	else
+		lclose
+	endif
+endfunction
+command! LtogglePassive call s:LtogglePassive()
+nnoremap <leader>L :LtoggleActive<CR>
+nnoremap <leader>l :LtogglePassive<CR>
 
 " ===========================================================================
 " Host-Specific Local Setup

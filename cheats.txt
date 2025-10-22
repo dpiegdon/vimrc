@@ -33,8 +33,6 @@ cgn					change next patternmatch of last regex
 <C-w> T					move current window to new tab
 <C-w> s					split current window
 <C-w> v					vsplit current window
-:tabnew					open new tab
-gt gT					switch tab
 :tabclose tabonly
 
 ------------------------------------------------------------------------------
@@ -42,16 +40,22 @@ gt gT					switch tab
 [c ]c					go to prev/next diff hunk
 dp					diffput
 do					diffget (*d*iff *o*btain)
+z=					suggest spelling alternative
+
 and via unimpaired:
+
 con					toggle line numbering
 cor					toggle relative numbering
 col					toggle list
 coh					toggle hlsearch
 cox					toggle crosshair cursor
 coy					toggle wrap
+yos					toggle spell checking (unimpaired)
+
 [a ]a					file prev/next
 [b ]b					buffer prev/next
-[q ]q					error prev/next
+[q ]q					quickfix prev/next
+[l ]l					location prev/nnext
 [y{motion}				encode as C string
 CTRL-R =				in insert mode. switch to prompt to
 					allow vimscript execution. output will
