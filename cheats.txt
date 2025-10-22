@@ -3,6 +3,16 @@ Cheat sheet and notes. May be outdated!
 
 ------------------------------------------------------------------------------
 
+TODO: check out plugins:
+  - https://github.com/Shougo/deoplete.nvim
+  - https://github.com/Shougo/ddc.vim
+    (in relation to ALE)
+  - https://github.com/neoclide/coc.nvim
+AI / ChatGPT:
+  - https://github.com/madox2/vim-ai
+
+------------------------------------------------------------------------------
+
 <C-w> <HJKL>				switch between split layouts
 <C-x> <C-u>				clang complete suggestions
 .					repeat last change

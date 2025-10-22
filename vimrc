@@ -3,6 +3,7 @@
 " ===========================================================================
 " Documentation
 " ===========================================================================
+
 " Documentation links:
 " (jump to files with `gf`)
 "   - README.md
@@ -18,8 +19,8 @@
 "   - pathogens/enabled/tagbar.git/doc/tagbar.txt
 "   - pathogens/enabled/unimpaired.git/doc/unimpaired.txt
 "   - pathogens/enabled/vim-colors-solarized/doc/solarized.txt
-
-" press `K` to get help on wor under cursor (runs keywordprg)
+"
+" press `K` to get help on word under cursor (runs keywordprg)
 
 " ===========================================================================
 " Global Setup
@@ -246,6 +247,10 @@ else					" or any directory above
 	endif
 endif
 set cscopeverbose			" show msg when other DB added
+
+"inoremap <C-Space> <C-o>:complete()<CR>
+" Some terminal emulators may not send CTRL-Space correctly:
+"inoremap <Nul> <C-o>:complete<CR>
 
 " ===========================================================================
 " Filebrowser (netrq) Setup
