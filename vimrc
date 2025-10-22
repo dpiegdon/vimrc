@@ -449,8 +449,8 @@ function ToggleDiffOption(option)
 endfunction
 nnoremap <leader>= :call ToggleDiffOption('iwhiteall')<CR>
 
-nnoremap <leader>[ :n<CR>
-nnoremap <leader>] :N<CR>
+nnoremap <A-u> :n<CR>
+nnoremap <A-i> :N<CR>
 					" next/previous file
 
 nnoremap <leader>a [czz
