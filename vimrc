@@ -408,7 +408,7 @@ nmap <leader>p :rviminfo!<CR>"gp
 nnoremap <leader><F1> :tabedit ~/.vim/vimrc<CR>
 nnoremap <leader><F2> :tabedit ~/.vim/cheats.txt<CR>
 
-nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:Paste\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace i:IntInc d:IntDec\nm:make ?C:Cscope\nq/Q:quickfix l/L:locationlist ?f:filter"<CR>
+nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:ALEToggle\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace i:IntInc d:IntDec\nm:make ?C:Cscope\nq/Q:quickfix l/L:locationlist ?f:filter"<CR>
 
 nmap <silent> <leader>\ :nohlsearch<CR>
 					" hide hilights
@@ -430,7 +430,7 @@ nnoremap <leader>4 :Git<CR>
 nnoremap <leader>?4 :split ~/.vim/pathogens/setups/fugitive.git/doc/fugitive.txt<CR>
 					" show git status
 
-nnoremap <leader>5 :GV   -- <C-R>%<CR>
+nnoremap <leader>5 :GV<CR>
 nnoremap <leader>?5 :split ~/.vim/pathogens/setups/gv.git/README.md<CR>
 					" prompt for gv on current file
 
@@ -540,7 +540,7 @@ nnoremap <leader>CVi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nnoremap <leader>?f :echo "fb - reformat python with black\nfi - indent C\nfp - lint python code\nfx fX - toggle between hex/binary"<CR>
 
 " filter macros
-nnoremap <silent> <leader>fb  :%!black -<CR>
+nnoremap <silent> <leader>fb  :BlackFormat<CR>
 nnoremap <silent> <leader>fi  :%!indent -kr -i8 -l100<CR>
 nnoremap <silent> <leader>fp  :lexpr system("pyflakes3 " . expand('%') . " ; pylint " . expand('%'))<CR>
 nnoremap <silent> <leader>fx  :%!xxd -g 1<CR>
