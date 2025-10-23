@@ -13,14 +13,12 @@ function! s:BlackExitHandler(job, result)
 	if a:result == 0
 		let l:view = winsaveview()
 		call deletebufline(bufnr('%'), 1, '$')
-		" skip first line, there is a note on which i/o stream is read
-		call setline(1, getbufline(l:out, 2, '$'))
+		call setline(1, getbufline(l:out, 1, '$'))
 		call winrestview(l:view)
 	else
 		botright new
 		setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
-		" skip first line, there is a note on which i/o stream is read
-		call setline(1, getbufline(l:err, 2, '$'))
+		call setline(1, getbufline(l:err, 1, '$'))
 		resize 5
 		file [black-error]
 	endif
@@ -40,8 +38,10 @@ function! s:BlackFormat()
 				\ 'in_name': bufname(),
 				\ 'out_io': 'buffer',
 				\ 'out_name': '',
+				\ 'out_msg': 0,
 				\ 'err_io': 'buffer',
 				\ 'err_name': '',
+				\ 'err_msg': 0,
 				\ 'exit_cb': 's:BlackExitHandler',
 				\ })
 endfunction
