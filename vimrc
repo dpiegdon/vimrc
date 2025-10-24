@@ -331,6 +331,7 @@ if has("autocmd")
 	augroup recognize_filetype
 		au BufRead,BufNewFile *.{bsd,bsdl}            set filetype=bsdl
 		au BufRead,BufNewFile *.{svf}                 set filetype=svf
+		au BufRead,BufNewFile *.{hcl,nomad,tf,tfvars} set filetype=hcl
 		au BufRead,BufNewFile *.{bb,bbappend,bbclass} set filetype=bitbake
 		au BufReadPre         *.nfo                   set fileencodings=cp437
 	augroup end
@@ -408,7 +409,7 @@ nmap <leader>p :rviminfo!<CR>"gp
 nnoremap <leader><F1> :chdir ~/.vim/<CR>:tabedit ~/.vim/vimrc<CR>
 nnoremap <leader><F2> :chdir ~/.vim/<CR>:tabedit ~/.vim/cheats.txt<CR>
 
-nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:ALEToggle\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace i:IntInc d:IntDec\nm:make ?C:Cscope\nq/Q:quickfix l/L:locationlist ?f:filter"<CR>
+nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor 7:ALEToggle 8:Paste\n%:Tig:CurrentFile ^:Colorscheme\nw:WhiteSpace A-k:IntInc A-j:IntDec\nm:make ?C:Cscope\nq/Q:quickfix l/L:locationlist ?f:filter"<CR>
 
 nmap <silent> <leader>\ :nohlsearch<CR>
 					" hide hilights
@@ -498,7 +499,7 @@ nnoremap <leader>m :make\|copen<CR>
 nnoremap <leader>M :lmake\|lopen<CR>
 					" make into lwindow and open it
 
-nnoremap <leader>?C :echo "Ci - create cscope index\nCc - run cscope+ctags on cwd\nCd - clear cscope/ctag files in cwd\nC(sSV)(sgdctefi) - ctag/cscope (search,Split,Vsplit) (Symbol,Global,D:callee,Caller,liTeral,Egrep,File,Includer)<CR>
+nnoremap <leader>?C :echo "Ci - create cscope index\nCc - run cscope+ctags on cwd\nCd - clear cscope/ctag files in cwd\nC(sSV)(sgdctefi) - ctag/cscope (search,Split,Vsplit) (Symbol,Global,D:callee,Caller,liTeral,Egrep,File,Includer)\nCf - run indent on marked block"<CR>
 
 nnoremap <leader>Ci :exe "!/usr/bin/find . -type f \\\( -name \\\*.c -o -name \\\*.h \\\) > cscope.files"<CR>
 nnoremap <leader>Cc :exe "!cscope -b -q -k ; ctags -R"<CR>
