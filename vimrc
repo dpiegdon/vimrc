@@ -25,6 +25,14 @@
 " ===========================================================================
 " Global Setup
 " ===========================================================================
+
+" to use ALE LSP completion:
+"  apt install python3-pylsp python3-pylsp-black python3-pylsp-isort
+"  apt install ccls
+"              -- (or clangd)
+" see: pathogens/enabled/ale.git/supported-tools.md
+let g:ale_completion_enabled = 1
+
 execute pathogen#infect('pathogens/enabled/{}')
 					" load contained plugins
 
@@ -251,6 +259,9 @@ set cscopeverbose			" show msg when other DB added
 "inoremap <C-Space> <C-o>:complete()<CR>
 " Some terminal emulators may not send CTRL-Space correctly:
 "inoremap <Nul> <C-o>:complete<CR>
+
+" use ALE as omnifunc completion
+set omnifunc=ale#completion#OmniFunc
 
 " ===========================================================================
 " Filebrowser (netrq) Setup
