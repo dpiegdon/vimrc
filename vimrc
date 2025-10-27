@@ -344,7 +344,7 @@ if has("autocmd")
 		au filetype c   setlocal colorcolumn=80
 		au filetype vim setlocal colorcolumn=78
 
-		au filetype python setlocal colorcolumn=80,110
+		au filetype python setlocal colorcolumn=90,110
 		au filetype python call ShortTab()
 
 		au filetype diff setlocal nomodeline
@@ -538,10 +538,10 @@ nnoremap <leader>CVf :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>CVi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 " python tools
-nnoremap <leader>?f :echo "fb - reformat python with black\nfi - indent C\nfp - lint python code\nfx fX - toggle between hex/binary"<CR>
+nnoremap <leader>?f :echo "ff - ALEFix\nfi - indent C\nfp - lint python code\nfx fX - toggle between hex/binary"<CR>
 
 " filter macros
-nnoremap <silent> <leader>fb  :BlackFormat<CR>
+nnoremap <silent> <leader>ff  :ALEFix<CR>
 nnoremap <silent> <leader>fi  :%!indent -kr -i8 -l100<CR>
 nnoremap <silent> <leader>fp  :lexpr system("pyflakes3 " . expand('%') . " ; pylint " . expand('%'))<CR>
 nnoremap <silent> <leader>fx  :%!xxd -g 1<CR>
@@ -549,7 +549,12 @@ nnoremap <silent> <leader>fX  :%!xxd -g 1 -r <CR>
 					" globally convert between RAW and HEX
 					" (":set binary" or "vim -b <file>")
 
-
+let g:ale_fixers = {
+			\ 'python': ['isort', 'black'],
+			\ 'c': ['clang-format'],
+			\ }
+let g:ale_python_black_options='--line-length 90 --skip-string-normalization'
+let g:ale_c_clangformat_options='--style=file:$HOME/.vim/support/linux-kernel-clang-format'
 
 " quickfix window -- use unimpaired [q ]q to navigate
 command! QtoggleActive if empty(filter(getwininfo(), 'v:val.quickfix')) | copen | else | cclose | endif
