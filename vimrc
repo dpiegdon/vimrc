@@ -357,6 +357,7 @@ if has("autocmd")
 
 		au filetype python setlocal colorcolumn=90,110
 		au filetype python call ShortTab()
+		"au filetype python let g:ale_fix_on_save = 1
 
 		au filetype diff setlocal nomodeline
 
@@ -577,6 +578,7 @@ nnoremap <silent> <leader>fX  :%!xxd -g 1 -r <CR>
 					" (":set binary" or "vim -b <file>")
 
 let g:ale_fixers = {
+			\ '*': ['remove_trailing_lines', 'trim_whitespace'],
 			\ 'python': ['isort', 'black'],
 			\ 'c': ['clang-format'],
 			\ }
