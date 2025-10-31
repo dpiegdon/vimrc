@@ -412,22 +412,6 @@ nnoremap <A-l> :tabnext<CR>
 nnoremap <A-Left> :tabmove -<CR>
 nnoremap <A-Right> :tabmove +<CR>
 
-" the same for weird ALT-mapping (might be broken)
-nnoremap 1 :1tabnext<CR>
-nnoremap 2 :2tabnext<CR>
-nnoremap 3 :3tabnext<CR>
-nnoremap 4 :4tabnext<CR>
-nnoremap 5 :5tabnext<CR>
-nnoremap 6 :6tabnext<CR>
-nnoremap 7 :7tabnext<CR>
-nnoremap 8 :8tabnext<CR>
-nnoremap 9 :9tabnext<CR>
-nnoremap 0 :10tabnext<CR>
-nnoremap h :tabNext<CR>
-nnoremap l :tabnext<CR>
-nnoremap [1;3D :tabmove -<CR>
-nnoremap [1;3C :tabmove +<CR>
-
 " yank across sessions
 " setup register 'g' for global yanking via <leader>y and <leader>p
 " see http://vim.wikia.com/wiki/Copy_and_paste_between_Vim_instances
