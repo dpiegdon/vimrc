@@ -13,6 +13,14 @@ AI / ChatGPT:
 
 ------------------------------------------------------------------------------
 
+:term					open terminal
+
+:packadd termdebug
+:Termdebug <program>			run debugger on <program>
+					(use <leader>gg)
+
+------------------------------------------------------------------------------
+
 <C-w> <HJKL>				switch between split layouts
 <C-x> <C-u>				clang complete suggestions
 .					repeat last change

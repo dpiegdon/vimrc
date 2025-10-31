@@ -310,12 +310,31 @@ let g:clang_complete_macros=1		" complete preproc/macros?
 " ===========================================================================
 " Debugging & GDB Plugin
 " ===========================================================================
-"packadd termdebug
+"packadd termdebug <- handled in s:LoadTermdebug()
 let g:termdebug_config = {}
-let g:termdebug_config['disasm_window'] = 1
-let g:termdebug_config['disasm_window_height'] = 10
 let g:termdebug_config['wide'] = 100
-let g:termdebug_config['winbar'] = 0
+let g:termdebug_config['variables_window'] = v:true
+let g:termdebug_config['variables_window_height'] = 15
+let g:termdebug_config['disasm_window'] = v:true
+let g:termdebug_config['disasm_window_height'] = 15
+let g:termdebug_config['evaluate_in_popup'] = v:true
+"let g:termdebug_config['winbar'] = v:false
+
+" but disable ALE linter on term windows (e.g. assembly output of debugger)
+augroup termdebug_settings
+	au!
+	autocmd BufWinEnter * 	  if exists('g:termdebug_loaded') && &buftype == '' && bufname() == '' && &buftype == '' |
+				\     let b:ale_enabled=v:false |
+				\ endif |
+augroup end
+
+function! s:LoadTermdebug()
+	if !exists('g:termdebug_loaded')
+		packadd termdebug
+	endif
+endfunction
+command! LoadTermdebug call s:LoadTermdebug()
+nnoremap <leader>gg :LoadTermdebug<CR>:Termdebug <C-R>=expand('%')<CR>
 
 " ===========================================================================
 " Filespecific Context Setup
@@ -326,67 +345,64 @@ filetype on				" autorecognize filetypes
 filetype plugin on			" autoload filetype-specific plugin
 filetype indent on			" auto-indent according to filetype
 
-if has("autocmd")
-	augroup remember_position	" remember cursor position in files
-		au BufReadPost *
-			\     if line("'\"") > 0 && line ("'\"") <= line("$") |
-			\         exe "normal g'\"" |
-			\     endif |
-	augroup end
+augroup remember_position		" remember cursor position in files
+	au!
+	au BufReadPost *	  if line("'\"") > 0 && line ("'\"") <= line("$") |
+				\     exe "normal g'\"" |
+				\ endif |
+augroup end
 
-	augroup fugitive
-		" remove old fugitive buffers
-		au BufReadPost fugitive://* set bufhidden=delete
-	augroup end
+augroup fugitive			" remove old fugitive buffers
+	au!
+	au BufReadPost fugitive://* set bufhidden=delete
+augroup end
 
-	augroup recognize_filetype
-		au BufRead,BufNewFile *.{bsd,bsdl}            set filetype=bsdl
-		au BufRead,BufNewFile *.{svf}                 set filetype=svf
-		au BufRead,BufNewFile *.{hcl,nomad,tf,tfvars} set filetype=hcl
-		au BufRead,BufNewFile *.{bb,bbappend,bbclass} set filetype=bitbake
-		au BufReadPre         *.nfo                   set fileencodings=cp437
-	augroup end
+augroup filetype_specifics
+	au!
+	au BufRead,BufNewFile *.{bsd,bsdl}            set filetype=bsdl
+	au BufRead,BufNewFile *.{svf}                 set filetype=svf
+	au BufRead,BufNewFile *.{hcl,nomad,tf,tfvars} set filetype=hcl
+	au BufRead,BufNewFile *.{bb,bbappend,bbclass} set filetype=bitbake
+	au BufReadPre         *.nfo                   set fileencodings=cp437
 
-	augroup filetypes
-		au filetype c,cpp,python,verilog RainbowParentheses
+	au filetype c,cpp,python,verilog RainbowParentheses
 
-		au filetype cpp setlocal colorcolumn=100
-		au filetype lpc setlocal colorcolumn=100
-		au filetype c   setlocal colorcolumn=80
-		au filetype vim setlocal colorcolumn=78
+	au filetype cpp setlocal colorcolumn=100
+	au filetype lpc setlocal colorcolumn=100
+	au filetype c   setlocal colorcolumn=80
+	au filetype vim setlocal colorcolumn=78
 
-		au filetype python setlocal colorcolumn=90,110
-		au filetype python call ShortTab()
-		"au filetype python let g:ale_fix_on_save = 1
+	au filetype python setlocal colorcolumn=90,110
+	au filetype python call ShortTab()
+	"au filetype python let g:ale_fix_on_save = 1
 
-		au filetype diff setlocal nomodeline
+	au filetype diff setlocal nomodeline
 
-		" to use vim as manpage reader:
-		"   alias man=vimman
-		"   vimman() { vim -c ":Man $1 $2 $3" -c ":only" }
-		au filetype man  setlocal readonly
-		au filetype man  setlocal nomodeline
-		au filetype man  nmap     <buffer> <Up>    <C-Y>
-		au filetype man  nmap     <buffer> <Down>  <C-E>
-		au filetype man  nmap     <buffer> <Space> <PageDown>
-		au filetype man  nmap     <buffer> <Home>  gg
-		au filetype man  nmap     <buffer> <End>   G
-		au filetype man  nnoremap <buffer> q       :quit<CR>
+	" to use vim as manpage reader:
+	"   alias man=vimman
+	"   vimman() { vim -c ":Man $1 $2 $3" -c ":only" }
+	au filetype man  setlocal readonly
+	au filetype man  setlocal nomodeline
+	au filetype man  nmap     <buffer> <Up>    <C-Y>
+	au filetype man  nmap     <buffer> <Down>  <C-E>
+	au filetype man  nmap     <buffer> <Space> <PageDown>
+	au filetype man  nmap     <buffer> <Home>  gg
+	au filetype man  nmap     <buffer> <End>   G
+	au filetype man  nnoremap <buffer> q       :quit<CR>
 
-		au filetype mail setlocal tw=72
-		au filetype mail setlocal colorcolumn=72
-		au filetype mail setlocal formatoptions+=a
-		au filetype mail setlocal nomodeline
-		au filetype mail setlocal list
-		au filetype mail setlocal listchars=tab:.\ ,trail:.
-		au filetype mail setlocal spell
-		au filetype mail nnoremap <buffer> <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
-					" kill plenking in quotes
-		au filetype mail nnoremap <buffer> <leader>=      :set tw+=2<cr>gqip
-		au filetype mail vnoremap <buffer> <leader>= <Esc>:set tw+=2<cr>gvgqgv
-					" reformat mails
-	augroup end
-endif
+	au filetype mail setlocal tw=72
+	au filetype mail setlocal colorcolumn=72
+	au filetype mail setlocal formatoptions+=a
+	au filetype mail setlocal nomodeline
+	au filetype mail setlocal list
+	au filetype mail setlocal listchars=tab:.\ ,trail:.
+	au filetype mail setlocal spell
+	au filetype mail nnoremap <buffer> <leader>pl :g/^>/s/  *\([!?,.]\)/\1/g<CR>
+				" kill plenking in quotes
+	au filetype mail nnoremap <buffer> <leader>=      :set tw+=2<cr>gqip
+	au filetype mail vnoremap <buffer> <leader>= <Esc>:set tw+=2<cr>gvgqgv
+				" reformat mails
+augroup end
 
 " ===========================================================================
 " Key Bindings
@@ -485,9 +501,9 @@ if has("gui_running")
 	nnoremap <leader>+ :call FontSizePlus()<CR>
 endif
 
-noremap! <C-R>\ <C-R>=fnameescape(expand('%:h')).'/'<cr>
+noremap! <C-R>\ <C-R>=fnameescape(expand('%:h')).'/'<CR>
 					" insert directory of current file
-					" (in prompts)
+					" (in prompts and insert-mode)
 nnoremap <leader>. :Explore<CR>
 					" explore directory of current file
 nnoremap <leader>> :Sex!<CR>
