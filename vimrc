@@ -313,22 +313,44 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 " ===========================================================================
 " Digraph setup
 " ===========================================================================
-digraph \"a 228
-digraph \"A 196
-digraph \"e 235
-digraph \"E 203
-digraph \"i 239
-digraph \"I 207
-digraph \"o 246
-digraph \"O 214
-digraph \"u 252
-digraph \"U 220
-digraph \"y 255
-digraph \"Y 376
+digraph \"a 228				" ä
+digraph \"A 196				" Ä
+digraph \"e 235				" ë
+digraph \"E 203				" Ë
+digraph \"i 239				" ï
+digraph \"I 207				" Ï
+digraph \"o 246				" ö
+digraph \"O 214				" Ö
+digraph \"u 252				" ü
+digraph \"U 220				" Ü
+digraph \"y 255				" ÿ
+digraph \"Y 376				" Ÿ
 " ß: ss
 " Super/subscript: S1/s1
 " Euro: Eu or =e
 " °: DG or ~o
+digraph GF 128512			" 😀 GRINNING FACE
+digraph SM 128515			" 😃 SMILING FACE WITH OPEN MOUTH
+digraph WK 128521			" 😉 WINKING FACE
+digraph HL 128525			" 😍 SMILING FACE WITH HEART-EYES
+digraph SG 128526			" 😎 SMILING FACE WITH SUNGLASSES
+digraph TU 128077			" 👍 THUMBS UP
+digraph TD 128078			" 👎 THUMBS DOWN
+digraph FH 128591			" 🙏 FOLDED HANDS
+digraph HT 10084			" ❤️  HEAVY BLACK HEART
+digraph KS 128538			" 😚 KISSING FACE CLOSED EYES
+digraph RO 128640			" 🚀 ROCKET
+digraph EL 9889				" ⚡ ELECTRICAL: LIGHTNING BOLT
+digraph TO 128736			" 🛠 TOOLS: HAMMER & WRENCH
+digraph LO 128269			" 🔍 MAGNIFYING GLASS
+digraph LI 128161			" 💡 LIGHT BULB
+digraph EX 10071			" ❗ EXCLAMATION MARK
+digraph CH 9989				" ✅ CHECK MARK
+digraph XX 10060			" ❌ CROSS MARK / RED X
+digraph PN 128204			" 📌 PUSHPIN
+digraph SP 10024			" ✨ SPARKLES
+digraph BG 128027			" 🐛 BUG
+digraph LB 128030			" 🐞 LADY BUG
 
 " ===========================================================================
 " Clang Complete Setup
