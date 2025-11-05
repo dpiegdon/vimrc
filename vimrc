@@ -311,6 +311,26 @@ let g:gundo_prefer_python3 = '1'	" python3 must be used on recent distros
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 " ===========================================================================
+" Digraph setup
+" ===========================================================================
+digraph \"a 228
+digraph \"A 196
+digraph \"e 235
+digraph \"E 203
+digraph \"i 239
+digraph \"I 207
+digraph \"o 246
+digraph \"O 214
+digraph \"u 252
+digraph \"U 220
+digraph \"y 255
+digraph \"Y 376
+" ß: ss
+" Super/subscript: S1/s1
+" Euro: Eu or =e
+" °: DG or ~o
+
+" ===========================================================================
 " Clang Complete Setup
 " ===========================================================================
 " NOTE: plugin currently disabled
