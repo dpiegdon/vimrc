@@ -31,6 +31,9 @@ zj/zk					move to prev/next fold
 					use register `+' or `*' to copy
 					to/paste from Xorg buffer.
 					see :help registers
+R					REPLACE mode
+gR					virtual REPLACE mode
+					=> Tab replaces multiple
 
 ------------------------------------------------------------------------------
 

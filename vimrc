@@ -235,6 +235,24 @@ let g:bg_color = "dark"
 let g:colorscheme = "solarized"
 call ColorSchemeActivate()
 
+set ttyfast				" assume a fast terminal
+set ttimeout
+set ttimeoutlen=50			" 50msec timeout for all key ctrl sequences
+
+" Cursor colors: \x1b]12;N\x7
+"   Where N is one of:
+"     - names from /usr/share/X11/rgb.txt, e.g. DodgerBlue
+"     - or hex colors:  #dd11aa
+" Cursor shapes: \x1b[N q"
+"   Where N is one of:
+"      - 1: block, 3: underscore, 5: vertical bar
+"      - +0:solid +1:blinking
+let &t_SI = "\x1b]12;red\x7\x1b[6 q"		" insert mode
+let &t_SR = "\x1b]12;red\x7\x1b[2 q"		" replace mode
+let &t_EI = "\x1b]12;#11ee44\x7\x1b[2 q"	" normal mode
+let &t_ti = "\x1b]12;#11ee44\x7\x1b[2 q"	" termcap start
+let &t_te.= "\x1b]112\x7"			" termcap end
+
 " ===========================================================================
 " Autocompletion, Indexing
 " ===========================================================================
@@ -363,6 +381,7 @@ augroup filetype_specifics
 	au BufRead,BufNewFile *.{svf}                 set filetype=svf
 	au BufRead,BufNewFile *.{hcl,nomad,tf,tfvars} set filetype=hcl
 	au BufRead,BufNewFile *.{bb,bbappend,bbclass} set filetype=bitbake
+	au BufRead,BufNewFile *.{yml.j2}              set filetype=yaml
 	au BufReadPre         *.nfo                   set fileencodings=cp437
 
 	au filetype c,cpp,python,verilog RainbowParentheses
