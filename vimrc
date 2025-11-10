@@ -437,7 +437,6 @@ augroup filetype_specifics
 
 	au filetype python setlocal colorcolumn=90,110
 	au filetype python call ShortTab()
-	"au filetype python let g:ale_fix_on_save = 1
 
 	au filetype diff setlocal nomodeline
 
@@ -644,9 +643,16 @@ let g:ale_fixers = {
 			\ '*': ['remove_trailing_lines', 'trim_whitespace'],
 			\ 'python': ['isort', 'black'],
 			\ 'c': ['clang-format'],
+			\ 'cpp': ['clang-format'],
 			\ }
 let g:ale_python_black_options='--line-length 90 --skip-string-normalization'
-let g:ale_c_clangformat_options='--style=file:$HOME/.vim/support/linux-kernel-clang-format'
+augroup ale_filetype_specific
+	" For C we use the kernel style,
+	au filetype c let b:ale_c_clangformat_options='--style=file:$HOME/.vim/support/linux-kernel-clang-format'
+	" but for C++ we assume there's a .clang-format file.
+
+	"au filetype python let g:ale_fix_on_save = 1
+augroup end
 
 " quickfix window -- use unimpaired [q ]q to navigate
 command! QtoggleActive if empty(filter(getwininfo(), 'v:val.quickfix')) | copen | else | cclose | endif
