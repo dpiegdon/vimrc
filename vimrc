@@ -249,8 +249,8 @@ set ttimeoutlen=50			" 50msec timeout for all key ctrl sequences
 "      - +0:solid +1:blinking
 let &t_SI = "\x1b]12;red\x7\x1b[6 q"		" insert mode
 let &t_SR = "\x1b]12;red\x7\x1b[2 q"		" replace mode
-let &t_EI = "\x1b]12;#11ee44\x7\x1b[2 q"	" normal mode
-"let &t_ti = "\x1b]12;#11ee44\x7\x1b[2 q"	" termcap start
+let &t_EI = "\x1b]12;#11ee44\x7\x1b[2 q"       " normal mode
+"let &t_ti = "\x1b]12;#11ee44\x7\x1b[2 q"      " termcap start
 " initial setup. could also use t_te but then cleanup doesn't work
 silent !echo -ne "\x1b]12;\#11ee44\x7\x1b[2 q"
 "let &t_te.= "\x1b]112\x7"			" termcap end
