@@ -651,7 +651,7 @@ augroup ale_filetype_specific
 	au filetype c let b:ale_c_clangformat_options='--style=file:$HOME/.vim/support/linux-kernel-clang-format'
 	" but for C++ we assume there's a .clang-format file.
 
-	"au filetype python let g:ale_fix_on_save = 1
+	"au filetype python let b:ale_fix_on_save = 1
 augroup end
 
 " quickfix window -- use unimpaired [q ]q to navigate
