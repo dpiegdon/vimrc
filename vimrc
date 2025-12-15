@@ -334,6 +334,7 @@ digraph SM 128515			" 😃 SMILING FACE WITH OPEN MOUTH
 digraph WK 128521			" 😉 WINKING FACE
 digraph HL 128525			" 😍 SMILING FACE WITH HEART-EYES
 digraph SG 128526			" 😎 SMILING FACE WITH SUNGLASSES
+digraph PK 129326                       " 🤮 PUKE
 digraph TU 128077			" 👍 THUMBS UP
 digraph TD 128078			" 👎 THUMBS DOWN
 digraph FH 128591			" 🙏 FOLDED HANDS
