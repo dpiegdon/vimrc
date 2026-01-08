@@ -496,6 +496,8 @@ nnoremap <A-Right> :tabmove +<CR>
 " see http://vim.wikia.com/wiki/Copy_and_paste_between_Vim_instances
 vmap <leader>y "gy<CR>:wviminfo!<CR>
 nmap <leader>p :rviminfo!<CR>"gp
+nmap <leader>P :rviminfo!<CR>"gP
+vmap <leader>p d:rviminfo!<CR>"gP
 
 nnoremap <leader><F1> :chdir ~/.vim/<CR>:tabedit ~/.vim/vimrc<CR>
 nnoremap <leader><F2> :chdir ~/.vim/<CR>:tabedit ~/.vim/cheats.txt<CR>
