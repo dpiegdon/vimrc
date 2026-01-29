@@ -373,7 +373,12 @@ let g:clang_complete_macros=1		" complete preproc/macros?
 " ===========================================================================
 " Debugging & GDB Plugin
 " ===========================================================================
-"packadd termdebug <- handled in s:LoadTermdebug()
+" Options:
+"  * termdebug: plugin part o default vim dist, can be started with:
+"    packadd termdebug <- handled in s:LoadTermdebug()
+"    Default option
+"  * vimspector: supports DAP like vscode. including python.
+"    Currently not installed
 let g:termdebug_config = {}
 let g:termdebug_config['wide'] = 100
 let g:termdebug_config['variables_window'] = v:true
