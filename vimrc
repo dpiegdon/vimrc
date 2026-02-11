@@ -512,6 +512,8 @@ nnoremap <leader>?? :echo "1:TagBar 2:Gundo 3:GitGutter 4:GStatus 5:GV 6:BGColor
 nmap <silent> <leader>\ :nohlsearch<CR>
 					" hide hilights
 
+let g:tagbar_sort=0
+let g:tagbar_case_insensitive=1
 nnoremap <leader>?1 :split ~/.vim/pathogens/setups/tagbar.git/doc/tagbar.txt<CR>
 nnoremap <leader>1 :TagbarToggle<cr>
 					" toggle tagbar
@@ -553,8 +555,8 @@ function ToggleDiffOption(option)
 endfunction
 nnoremap <leader>= :call ToggleDiffOption('iwhiteall')<CR>
 
-nnoremap <leader>a [czz
-nnoremap <leader>s ]czz
+nnoremap <leader>[ [czz
+nnoremap <leader>] ]czz
 					" jump to next diff and center it
 
 nnoremap <leader>/ /^[<>\|=]\{7}<CR>
