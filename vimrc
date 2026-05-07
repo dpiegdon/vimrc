@@ -655,6 +655,9 @@ let g:ale_fixers = {
 			\ 'c': ['clang-format'],
 			\ 'cpp': ['clang-format'],
 			\ }
+let g:ale_linters = {
+			\ 'python': ['flake8', 'mypy', 'pylint', 'pyright', 'ruff', 'pytyper'],
+			\ }
 let g:ale_python_black_options='--line-length 90 --skip-string-normalization'
 augroup ale_filetype_specific
 	" For C we use the kernel style,
