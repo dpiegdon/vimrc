@@ -583,6 +583,8 @@ nnoremap <leader>> :Sex!<CR>
 
 nnoremap <leader>w :%s/[ \t]*$//g<CR>
 					" kill any whitespace at all EOL
+nnoremap <leader>W :windo set wrap!<CR>
+					" globally toggle wrap mode
 
 nnoremap <leader>i <C-a>
 nnoremap <A-k> <C-a>
