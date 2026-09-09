@@ -34,6 +34,7 @@ zj/zk					move to prev/next fold
 R					REPLACE mode
 gR					virtual REPLACE mode
 					=> Tab replaces multiple
+gqap					reformat current paragraph
 
 ------------------------------------------------------------------------------
 

@@ -704,6 +704,9 @@ command! LtogglePassive call s:LtogglePassive()
 nnoremap <leader>L :LtoggleActive<CR>
 nnoremap <leader>l :LtogglePassive<CR>
 
+command! -nargs=1 RFC edit https://www.rfc-editor.org/rfc/rfc<args>.txt | setlocal filetype=rfc | redraw!
+					" RFC command to download & read RFCs
+
 " ===========================================================================
 " Host-Specific Local Setup
 " ===========================================================================
