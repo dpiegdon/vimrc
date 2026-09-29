@@ -441,7 +441,7 @@ augroup filetype_specifics
 	au filetype c   setlocal colorcolumn=80
 	au filetype vim setlocal colorcolumn=78
 
-	au filetype python setlocal colorcolumn=90,110
+	au filetype python setlocal colorcolumn=88
 	au filetype python call ShortTab()
 
 	au filetype diff setlocal nomodeline
@@ -660,8 +660,6 @@ let g:ale_fixers = {
 let g:ale_linters = {
 			\ 'python': ['ruff', 'ty', 'pytyper', 'flake8', 'mypy', 'pyright'],
 			\ }
-let g:ale_python_isort_options='--profile black'
-let g:ale_python_black_options='--line-length 90 --skip-string-normalization'
 augroup ale_filetype_specific
 	" For C we use the kernel style,
 	au filetype c let b:ale_c_clangformat_options='--style=file:$HOME/.vim/support/linux-kernel-clang-format'
