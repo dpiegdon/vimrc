@@ -653,12 +653,12 @@ nnoremap <silent> <leader>fX  :%!xxd -g 1 -r <CR>
 
 let g:ale_fixers = {
 			\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-			\ 'python': ['isort', 'black'],
+			\ 'python': ['ruff', 'ruff_format'],
 			\ 'c': ['clang-format'],
 			\ 'cpp': ['clang-format'],
 			\ }
 let g:ale_linters = {
-			\ 'python': ['flake8', 'mypy', 'pylint', 'pyright', 'ruff', 'pytyper'],
+			\ 'python': ['ruff', 'ty', 'pytyper', 'flake8', 'mypy', 'pyright'],
 			\ }
 let g:ale_python_isort_options='--profile black'
 let g:ale_python_black_options='--line-length 90 --skip-string-normalization'
